@@ -32,3 +32,20 @@ export function validateBeerData(
 
   next();
 }
+
+export function validatePartyData(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const tempData = req.body;
+  if (!tempData || !tempData.temperature) {
+    return res.status(400).json({ error: "Dados inválidos" });
+  }
+
+  if (typeof tempData.temperature !== "number") {
+    return res.status(400).json({ error: "Temperature deve ser um número" });
+  }
+
+  next();
+}
