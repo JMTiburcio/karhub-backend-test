@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { validateBeerData } from "../middleware/validation";
 
 import {
   handleGetBeer,
@@ -12,7 +13,7 @@ const router = Router();
 
 router.get("/:id", handleGetBeer);
 router.get("/", handleGetAllBeer);
-router.post("/", handleCreateBeer);
+router.post("/", validateBeerData, handleCreateBeer);
 router.put("/:id", handleUpdateBeer);
 router.delete("/:id", handleDeleteBeer);
 
