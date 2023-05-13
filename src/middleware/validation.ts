@@ -21,7 +21,7 @@ export function validateBeerData(
 
   for (const [key, type] of Object.entries(IBeerSchema)) {
     // Verifica se a chave está presente
-    if (!beerData[key]) {
+    if (beerData[key] === undefined) {
       return res.status(400).json({ error: `Chave não encontrada: ${key}` });
     }
     // Verifica se a chave tem o tipo esperado
