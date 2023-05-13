@@ -11,13 +11,12 @@ export async function handleBeerAndPlaylist(req: Request, res: Response) {
 
     if (beers.length === 0) {
       res.status(404).json({ error: "Nenhuma cerveja encontrada" });
+      return;
     }
 
-    if (beers.length === 1) {
-      res.status(200).json(beers[0]);
-    }
+    const closestBeer =
+      beers.length === 1 ? beers[0] : findClosestBeer(beers, temperature);
 
-    const closestBeer = findClosestBeer(beers, temperature);
     const token = await getToken();
     const playlist = await getPlaylist(token, closestBeer.beerStyle);
 
