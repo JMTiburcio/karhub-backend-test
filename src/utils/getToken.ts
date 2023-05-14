@@ -8,7 +8,7 @@ interface IToken {
   };
 }
 
-export async function getToken() {
+export default async function getToken() {
   try {
     const credentials = `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`;
     const encodedCredentials = Buffer.from(credentials).toString("base64");
