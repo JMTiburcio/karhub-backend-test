@@ -22,7 +22,7 @@ describe("validateBeerData", () => {
     jest.clearAllMocks();
   });
 
-  it("should pass validation for valid beer data", () => {
+  it("deve aprovar quando dados forem válidos", () => {
     const req = mockRequest({
       beerStyle: "IPA",
       minTemp: 5,
@@ -37,7 +37,7 @@ describe("validateBeerData", () => {
     expect(mockNext).toHaveBeenCalled();
   });
 
-  it("should return error for missing key in beer data", () => {
+  it("deve retornar erro quando faltar key", () => {
     const req = mockRequest({
       beerStyle: "IPA",
       minTemp: 5,
@@ -53,7 +53,7 @@ describe("validateBeerData", () => {
     expect(mockNext).not.toHaveBeenCalled();
   });
 
-  it("should return error for invalid type in beer data", () => {
+  it("deve retornar erro quando tipo de dado é inválido", () => {
     const req = mockRequest({
       beerStyle: "IPA",
       minTemp: "5",
@@ -70,7 +70,7 @@ describe("validateBeerData", () => {
     expect(mockNext).not.toHaveBeenCalled();
   });
 
-  it("should return error for extra key in beer data", () => {
+  it("deve retornar erro quando houver keys extras", () => {
     const req = mockRequest({
       beerStyle: "IPA",
       minTemp: 5,
@@ -94,7 +94,7 @@ describe("validatePartyData", () => {
     jest.clearAllMocks();
   });
 
-  it("should pass validation for valid party data", () => {
+  it("deve aprovar quando dados forem válidos", () => {
     const req = mockRequest({
       temperature: 25,
     });
@@ -107,7 +107,7 @@ describe("validatePartyData", () => {
     expect(mockNext).toHaveBeenCalled();
   });
 
-  it("should return error for missing temperature in party data", () => {
+  it("deve retornar erro quando faltar temperature nos dados", () => {
     const req = mockRequest({});
     const res = mockResponse();
 
@@ -120,7 +120,7 @@ describe("validatePartyData", () => {
     expect(mockNext).not.toHaveBeenCalled();
   });
 
-  it("should return error for invalid type of temperature in party data", () => {
+  it("deve retornar erro quando temperature não for número", () => {
     const req = mockRequest({
       temperature: "25",
     });

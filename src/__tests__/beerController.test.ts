@@ -28,12 +28,11 @@ describe("handleGetBeer", () => {
     jest.clearAllMocks();
   });
 
-  it("should return the beer when found", async () => {
+  it("deve retornar cerveja quando encontrada", async () => {
     const beerId = "1234567890";
     const mockBeer = {
       _id: beerId,
-      name: "Beer Name",
-      // Other properties
+      beerStyle: "BeerStyle",
     };
 
     Beer.findById = jest.fn().mockResolvedValue(mockBeer);
@@ -47,7 +46,7 @@ describe("handleGetBeer", () => {
     expect(res.json).toHaveBeenCalledWith(mockBeer);
   });
 
-  it("should return 404 error when beer not found", async () => {
+  it("deve retornar 404 quando cerveja não for encontrada", async () => {
     const beerId = "1234567890";
 
     Beer.findById = jest.fn().mockResolvedValue(null);
@@ -61,7 +60,7 @@ describe("handleGetBeer", () => {
     expect(res.json).toHaveBeenCalledWith({ error: "Cerveja não encontrada" });
   });
 
-  it("should return 500 error when there is an error in finding beer", async () => {
+  it("deve retornar 500 quando houver erro ao filtrar o database", async () => {
     const beerId = "1234567890";
 
     Beer.findById = jest.fn().mockRejectedValue(new Error("Database error"));
@@ -81,17 +80,15 @@ describe("handleGetAllBeer", () => {
     jest.clearAllMocks();
   });
 
-  it("should return all beers", async () => {
+  it("deve retornar todas as cervejas", async () => {
     const mockBeers = [
       {
         _id: "1",
-        name: "Beer 1",
-        // Other properties
+        beerStyle: "BeerStyle 1",
       },
       {
         _id: "2",
-        name: "Beer 2",
-        // Other properties
+        beerStyle: "BeerStyle 2",
       },
     ];
 
@@ -106,7 +103,7 @@ describe("handleGetAllBeer", () => {
     expect(res.json).toHaveBeenCalledWith(mockBeers);
   });
 
-  it("should return 500 error when there is an error in finding beers", async () => {
+  it("deve retornar 500 quando houver erro ao filtrar o database", async () => {
     Beer.find = jest.fn().mockRejectedValue(new Error("Database error"));
 
     const req = mockRequest();
@@ -124,7 +121,7 @@ describe("handleCreateBeer", () => {
     jest.clearAllMocks();
   });
 
-  it("should create a new beer", async () => {
+  it("deve criar nova cerveja", async () => {
     const mockBeer = {
       name: "New Beer",
       minTemp: -2,
@@ -143,7 +140,7 @@ describe("handleCreateBeer", () => {
     expect(res.status).toHaveBeenCalledWith(201);
   });
 
-  it("should return 500 error when there is an error in creating beer", async () => {
+  it("deve retornar 500 quando houver erro ao criar cerveja no database", async () => {
     const mockBeer = {
       name: "New Beer",
       minTemp: -2,
@@ -169,7 +166,7 @@ describe("handleUpdateBeer", () => {
     jest.clearAllMocks();
   });
 
-  it("should update the beer when found", async () => {
+  it("deve atualizar cerveja quando encontrada", async () => {
     const beerId = "1234567890";
     const mockBeer = {
       _id: beerId,
@@ -189,7 +186,7 @@ describe("handleUpdateBeer", () => {
     expect(res.json).toHaveBeenCalledWith(updatedBeer);
   });
 
-  it("should return 404 error when beer not found", async () => {
+  it("deve retornar 404 quando não encontrar cerveja", async () => {
     const beerId = "1234567890";
 
     Beer.findByIdAndUpdate = jest.fn().mockResolvedValue(null);
@@ -203,7 +200,7 @@ describe("handleUpdateBeer", () => {
     expect(res.json).toHaveBeenCalledWith({ error: "Cerveja não encontrada" });
   });
 
-  it("should return 500 error when there is an error in updating beer", async () => {
+  it("deve retornar 500 quando houver erro ao atulizar cerveja no database", async () => {
     const beerId = "1234567890";
 
     Beer.findByIdAndUpdate = jest
@@ -227,7 +224,7 @@ describe("handleDeleteBeer", () => {
     jest.clearAllMocks();
   });
 
-  it("should delete the beer when found", async () => {
+  it("deve deletar cerveja", async () => {
     const beerId = "1234567890";
     const mockBeer = {
       _id: beerId,
@@ -245,7 +242,7 @@ describe("handleDeleteBeer", () => {
     expect(res.sendStatus).toHaveBeenCalledWith(204);
   });
 
-  it("should return 404 error when beer not found", async () => {
+  it("deve retornar 404 quando não encontrar cerveja", async () => {
     const beerId = "1234567890";
 
     Beer.findByIdAndDelete = jest.fn().mockResolvedValue(null);
@@ -259,7 +256,7 @@ describe("handleDeleteBeer", () => {
     expect(res.json).toHaveBeenCalledWith({ error: "Cerveja não encontrada" });
   });
 
-  it("should return 500 error when there is an error in deleting beer", async () => {
+  it("deve retornar 500 quando houver erro ao deletar cerveja no database", async () => {
     const beerId = "1234567890";
 
     Beer.findByIdAndDelete = jest
