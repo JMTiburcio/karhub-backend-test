@@ -23,7 +23,7 @@ export default async function getPlaylist(
     };
     const response = await axios.get(url, { headers });
 
-    if (response.data.playlist.total === 0) {
+    if (response.data.playlists.total === 0) {
       return null;
     }
 
