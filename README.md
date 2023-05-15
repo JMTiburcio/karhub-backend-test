@@ -71,6 +71,20 @@ yarn test
 
 Foram realizados testes para verificar a execução do `CRUD`, validação do `body` dos Requests, e o controller da rota `party`
 
+### POST /party
+
+Retorna cerveja e playlist adequadas para a temperatura escolhida.
+
+#### Parâmetros
+
+- `temperature`: temperatura desejada para cerveja.
+
+#### Respostas
+
+- `200 OK`: Retorna a cerveja e playlist.
+- `404 Not Found`: Retorna uma mensagem de erro se a cerveja ou playlist não forem encontradas.
+- `500 Internal Server Error`: Retorna uma mensagem de erro se ocorrer um erro ao procurar cerveja ou playlist.
+
 ### GET /beer/:id
 
 Recupera informações sobre uma cerveja específica.
