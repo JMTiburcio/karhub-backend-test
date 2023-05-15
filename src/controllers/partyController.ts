@@ -20,6 +20,15 @@ export async function handleBeerAndPlaylist(req: Request, res: Response) {
     const token = await getToken();
     const playlist = await getPlaylist(token, closestBeer.beerStyle);
 
+    if (!playlist) {
+      res
+        .status(404)
+        .json({
+          error: `Nenhuma playlist encontrada para: ${closestBeer.beerStyle}`,
+        });
+      return;
+    }
+
     const result = {
       beerStyle: closestBeer.beerStyle,
       playlist,

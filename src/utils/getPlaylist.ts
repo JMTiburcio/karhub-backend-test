@@ -14,7 +14,7 @@ interface ITrack {
 export default async function getPlaylist(
   token: string,
   beerStyle: string
-): Promise<IPlaylist> {
+): Promise<IPlaylist | null> {
   try {
     // Pegar primeira playlist com query beerStyle
     let url = `https://api.spotify.com/v1/search?q=${beerStyle}&type=playlist&limit=1`;
@@ -22,6 +22,11 @@ export default async function getPlaylist(
       Authorization: `Bearer ${token}`,
     };
     const response = await axios.get(url, { headers });
+
+    if (response.data.playlist.total === 0) {
+      return null;
+    }
+
     const playlistName: string = response.data.playlists.items[0].name;
 
     // Buscar tracks da playlist
