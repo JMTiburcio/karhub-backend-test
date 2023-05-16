@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - MONGO_URL=mongodb://db:27017/karhub
+  db:
+    image: mongo:latest
+    command: ["--logpath", "/dev/null", "--quiet"]
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data: {}

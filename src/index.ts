@@ -18,12 +18,7 @@ const mongoOptions: MyConnectOptions = {
   useUnifiedTopology: true,
 };
 mongoose.set("strictQuery", false);
-
-if (!process.env.MONGO_URL) {
-  throw new Error("A variável MONGO_URL não está definida no ambiente.");
-}
-
-mongoose.connect(process.env.MONGO_URL, mongoOptions);
+mongoose.connect(process.env.MONGO_URL as string, mongoOptions);
 
 //Inciando aplicação
 const app: Express = express();
