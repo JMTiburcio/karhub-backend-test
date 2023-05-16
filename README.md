@@ -42,11 +42,12 @@ Para ter uma cópia local e executá-la, siga os seguinte passos:
    cp .env.example .env
    ```
 
-1. Configure as variáveis de ambiente no arquivo `.env`.
-1. Execute localmente a aplicação
+1. Configure as variáveis _CLIENT_ID_ e _CLIENT_SECRET_.
+
+1. Execute localmente a aplicação utilizando docker-compose
 
    ```sh
-   yarn dev
+   docker-compose up
    ```
 
 ### API Endpoints
