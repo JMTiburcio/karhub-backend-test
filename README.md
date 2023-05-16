@@ -11,7 +11,10 @@ Para ter uma cópia local e executá-la, siga os seguinte passos:
 
 ### Pré-requisitos
 
+- Node.js (Version: >=14.x <17)
+- Yarn _(recommended)_
 - Docker / Docker Compose
+- MongoDB
 - Spotify APP
 
 ### Setup
